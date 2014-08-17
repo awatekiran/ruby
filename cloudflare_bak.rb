@@ -4,6 +4,9 @@ require 'net/https'
 require 'json'
 require 'multi_json'
 
+date = Time.new.strftime("%d-%m-%y")
+folder_path = "/test_scripts/folder/"
+
 apiurl = "https://www.cloudflare.com/api_json.html"
 token = "asdaasdasdasdasdasdasdadadasdadasdaas"  //get this value from my account section in cloudflare account //
 mail = "test@example.com"
@@ -53,4 +56,11 @@ zonenames_array.each do | domain |
         testzone.write("\n")
    end
         testzone.close
+end
+
+#rename the zone file with .txt extension 
+#This is still in progress ....
+Dir.glob(folder_path + "*").sort.each do |f|
+  filename = File.basename(f, File.extname(f))
+  File.rename(f, folder_path + filename.downcase() + "-" + date + ".txt")
 end
