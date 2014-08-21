@@ -26,4 +26,3 @@ dirs.each do |y|
         end
 end
 end
-~
